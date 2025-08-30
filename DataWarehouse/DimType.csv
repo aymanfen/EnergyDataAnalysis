@@ -1,0 +1,14 @@
+Type,AltCategory,Category
+biofuel,Renewable,Renewable
+coal,Non-Renewable,Fossil Fuel
+fossil,Non-Renewable,Fossil Fuel
+fossil_fuel,Non-Renewable,Fossil Fuel
+gas,Non-Renewable,Fossil Fuel
+hydro,Renewable,Hydroelectric
+low_carbon,Non-Renewable,Low-Carbon
+nuclear,Non-Renewable,Nuclear
+oil,Non-Renewable,Fossil Fuel
+other_renewable,Renewable,Other Renewable
+renewables,Renewable,Renewable Energy
+solar,Renewable,Solar
+wind,Renewable,Wind
