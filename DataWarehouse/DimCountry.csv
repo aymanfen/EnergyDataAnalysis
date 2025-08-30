@@ -1,0 +1,26 @@
+IsoCode,Country,Region,Continent,DevelopmentStatus
+AUS,Australia,Oceania,Oceania,Developed
+BEL,Belgium,Europe,Europe,Developed
+BRA,Brazil,Latin America & Caribbean,South America,Developing
+CAN,Canada,North America,North America,Developed
+CHN,China,East Asia,Asia,Developing
+FRA,France,Europe,Europe,Developed
+DEU,Germany,Europe,Europe,Developed
+IND,India,South Asia,Asia,Developing
+IDN,Indonesia,Southeast Asia,Asia,Developing
+ITA,Italy,Europe,Europe,Developed
+JPN,Japan,East Asia,Asia,Developed
+MEX,Mexico,North America,North America,Developing
+NLD,Netherlands,Europe,Europe,Developed
+POL,Poland,Europe,Europe,Developed
+RUS,Russia,Europe,Europe,Developing
+SAU,Saudi Arabia,Middle East,Asia,Developing
+KOR,South Korea,East Asia,Asia,Developed
+ESP,Spain,Europe,Europe,Developed
+SWE,Sweden,Europe,Europe,Developed
+CHE,Switzerland,Europe,Europe,Developed
+TWN,Taiwan,East Asia,Asia,Developing
+THA,Thailand,Southeast Asia,Asia,Developing
+TUR,Turkey,Middle East,Asia,Developing
+GBR,United Kingdom,Europe,Europe,Developed
+USA,United States,North America,North America,Developed
