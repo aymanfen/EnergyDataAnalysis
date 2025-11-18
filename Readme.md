@@ -53,9 +53,13 @@ Architecture Type: ETL (Extract → Transform → Load → Analytics)
 
 ## Tech Stack
 Layer	Tools
-Extraction & Cleaning	Python, Pandas
+
+Extraction & Cleaning 	Python, Pandas
+
 Modeling	Dimensional approach (Star Schema)
+
 Storage	Local tabular storage (CSV/Parquet)
+
 BI & Analytics	Microsoft Power BI
 
 ## Data Source
@@ -81,25 +85,25 @@ more details in owid-energy-codebook.csv
 
 ![Dashboard1](./Visuals/dashboard1.png)
 
-Energy per capita over time
+Energy per capita per Country
 
-Energy per GDP over time
+Energy per GDP per Country
 
-Top 10 consuming countries (bar / line combo)
-
-Fossil vs renewable evolution (stacked area)
+Bubble Chart highlighting Population, GDP and Energy Consumption Correlation
 
 ### Dashboard Page 2 — Detailed View
 
 ![Dashboard2](./Visuals/dashboard2.png)
 
-Renewable share by continent
+Total Energy Consumption compared to Previous Year
 
-Top adopters vs lagging nations
+Renewable Energy Prct of total energy consumption compared to Previous Year
 
-Forecast or projection (optional)
+NonRenewable Energy Prct of total energy consumption compared to Previous Year
 
-Correlation between GDP growth & renewable transition
+Detailed Breakdown of Energy Consumption by Energy Type
+
+Evolution of Energy Consumption and Energy Sources over Time
 
 
 
@@ -112,7 +116,7 @@ Developed countries are still heavily dependent on non-renewable sources, despit
 
 Brazil, Sweden, and France stand out as strong renewable adopters.
 
-###s Global Energy Competitiveness
+### Global Energy Competitiveness
 
 USA, China, and India show the strongest competition in total energy consumption due to industrial expansion, population, and economic intensity.
 
