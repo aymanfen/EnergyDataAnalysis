@@ -1,0 +1,57 @@
+table DimType
+	lineageTag: b1136c11-df6e-451f-b926-926045697268
+
+	column Type
+		dataType: string
+		lineageTag: cdc34d61-ff9d-49ab-ae46-7b03acc5c8cf
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column AltCategory
+		dataType: string
+		lineageTag: 0ed92954-1276-4718-98e9-a42c5f303e26
+		summarizeBy: none
+		sourceColumn: AltCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d5cbd943-e9db-477a-a7b3-fd8a2c1676f3
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy EnergyHierarchy
+		lineageTag: 0eca453c-8285-418d-a81e-f9b02a34dbcc
+
+		level AltCategory
+			lineageTag: 7e9707ff-af08-4adb-b630-685ab21bf19a
+			column: AltCategory
+
+		level Category
+			lineageTag: 7548f5fa-be90-4b98-be51-68d1c464ca3e
+			column: Category
+
+		level Type
+			lineageTag: b57fbc8e-bb29-45f4-b624-dc8acb1c443b
+			column: Type
+
+	partition DimType = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Projects\EnergyDataAnalysis\DataWarehouse\DimType.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Type", type text}, {"AltCategory", type text}, {"Category", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

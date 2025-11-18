@@ -1,0 +1,73 @@
+table DimCountry
+	lineageTag: 4ae4d6cd-9b71-4d7a-9227-842bafdfa897
+
+	column IsoCode
+		dataType: string
+		lineageTag: fec62bcb-0fde-40b7-92b0-9e2e20c86f5b
+		summarizeBy: none
+		sourceColumn: IsoCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 9fb47f0b-d188-43e6-9379-58aefb23f83c
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: d017082e-1c32-4b49-948d-641325390bae
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Continent
+		dataType: string
+		lineageTag: 298ce8d6-8a90-41c3-98c3-25ef079d5ea4
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = Automatic
+
+	column DevelopmentStatus
+		dataType: string
+		lineageTag: d80ecba1-4092-46d2-bde8-753deb9cc54d
+		summarizeBy: none
+		sourceColumn: DevelopmentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy RegionHierarchy
+		lineageTag: 3dc4385c-29ca-49e7-824c-63b56027597a
+
+		level Continent
+			lineageTag: f0a01a59-1245-4bb0-a3ed-bcd745be68b0
+			column: Continent
+
+		level Region
+			lineageTag: aa225bb6-69de-40f3-a506-89fe2bff9019
+			column: Region
+
+		level Country
+			lineageTag: 289efe7e-23f9-42bd-8320-6b658628c02c
+			column: Country
+
+	partition DimCountry = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Projects\EnergyDataAnalysis\DataWarehouse\DimCountry.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"IsoCode", type text}, {"Country", type text}, {"Region", type text}, {"Continent", type text}, {"DevelopmentStatus", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

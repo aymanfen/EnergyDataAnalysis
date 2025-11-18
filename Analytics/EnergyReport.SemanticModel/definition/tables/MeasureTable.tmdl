@@ -1,0 +1,69 @@
+table MeasureTable
+	lineageTag: dc61dbb9-195e-47d5-92e1-c3c67586347e
+
+	measure CurrentYearValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2023)
+		formatString: 0
+		lineageTag: 72e7d610-5ac1-440b-9d53-d4e1e88ddfa1
+
+	measure PreviousYearValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2022)
+		formatString: 0
+		lineageTag: 4da49ac8-75a5-4b2a-80ea-4c58598091a9
+
+	measure PrctChange = DIVIDE([CurrentYearValue]-[PreviousYearValue],[PreviousYearValue],0)*100
+		lineageTag: c9b13c15-c444-47ed-93b8-ebd7f9712a72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CurrentRenewableValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2023,DimType[AltCategory]="Renewable")
+		formatString: 0
+		lineageTag: 79de6a4a-ef89-4b38-8e8e-357af49044b5
+
+	measure LastRenewableValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2022,DimType[AltCategory]="Renewable")
+		formatString: 0
+		lineageTag: d5e6a893-f71d-421c-8886-a8da40f87e2a
+
+	measure CurrentRenewablePrct = DIVIDE([CurrentRenewableValue],[CurrentYearValue],0)
+		lineageTag: 158355c2-9a4f-4058-8257-9580f545dc98
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PreviousRenewablePrct = DIVIDE([LastRenewableValue],[PreviousYearValue],0)
+		lineageTag: 748fcd53-2ed8-4fbb-a8fd-0ea7870b68ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CurrentNRenewableValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2023,DimType[AltCategory]="Non-Renewable")
+		formatString: 0
+		lineageTag: 15fa38db-0e7f-4275-b6ba-26878f5f6e00
+
+	measure LastNRenewableValue = CALCULATE(SUM(FactEnergy[Consumption]),DimYear[Year]=2022,DimType[AltCategory]="Non-Renewable")
+		formatString: 0
+		lineageTag: 65c40fed-58ac-40aa-b031-48d1e0284845
+
+	measure CurrentNRenewablePrct = DIVIDE([CurrentNRenewableValue],[CurrentYearValue],0)
+		lineageTag: 8299f047-abb9-4d96-994f-e72aee53ae9c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LastNRenewablePrct = DIVIDE([LastNRenewableValue],[PreviousYearValue],0)
+		lineageTag: a3a127a9-099c-488f-8041-09e92ddbb76e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 8aee8a9b-bf05-4619-8cf6-3c1753fd8eda
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureTable = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = a5813a4f24a843b880e6477264e2428d
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -1,0 +1,24 @@
+table DimYear
+	lineageTag: b476aec9-49de-4f15-9b03-94c3dea608d6
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f357d52f-0810-4d3e-979f-196547a42dfb
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimYear = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Projects\EnergyDataAnalysis\DataWarehouse\DimYear.csv"),[Delimiter=",", Columns=1, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Year", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

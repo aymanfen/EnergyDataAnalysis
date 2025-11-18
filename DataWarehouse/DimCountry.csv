@@ -1,26 +1,26 @@
-IsoCode,Country,Region,Continent,DevelopmentStatus
-AUS,Australia,Oceania,Oceania,Developed
-BEL,Belgium,Europe,Europe,Developed
-BRA,Brazil,Latin America & Caribbean,South America,Developing
-CAN,Canada,North America,North America,Developed
-CHN,China,East Asia,Asia,Developing
-FRA,France,Europe,Europe,Developed
-DEU,Germany,Europe,Europe,Developed
-IND,India,South Asia,Asia,Developing
-IDN,Indonesia,Southeast Asia,Asia,Developing
-ITA,Italy,Europe,Europe,Developed
-JPN,Japan,East Asia,Asia,Developed
-MEX,Mexico,North America,North America,Developing
-NLD,Netherlands,Europe,Europe,Developed
-POL,Poland,Europe,Europe,Developed
-RUS,Russia,Europe,Europe,Developing
-SAU,Saudi Arabia,Middle East,Asia,Developing
-KOR,South Korea,East Asia,Asia,Developed
-ESP,Spain,Europe,Europe,Developed
-SWE,Sweden,Europe,Europe,Developed
-CHE,Switzerland,Europe,Europe,Developed
-TWN,Taiwan,East Asia,Asia,Developing
-THA,Thailand,Southeast Asia,Asia,Developing
-TUR,Turkey,Middle East,Asia,Developing
-GBR,United Kingdom,Europe,Europe,Developed
-USA,United States,North America,North America,Developed
+iso_code,country,Region,Continent,IncomeGroup,DevelopmentStatus
+AUS,Australia,Oceania,Oceania,High income,Developed
+BEL,Belgium,Europe,Europe,High income,Developed
+BRA,Brazil,Latin America & Caribbean,South America,Upper-middle income,Developing
+CAN,Canada,North America,North America,High income,Developed
+CHN,China,East Asia,Asia,Upper-middle income,Developing
+FRA,France,Europe,Europe,High income,Developed
+DEU,Germany,Europe,Europe,High income,Developed
+IND,India,South Asia,Asia,Lower-middle income,Developing
+IDN,Indonesia,Southeast Asia,Asia,Upper-middle income,Developing
+ITA,Italy,Europe,Europe,High income,Developed
+JPN,Japan,East Asia,Asia,High income,Developed
+MEX,Mexico,North America,North America,Upper-middle income,Developing
+NLD,Netherlands,Europe,Europe,High income,Developed
+POL,Poland,Europe,Europe,High income,Developed
+RUS,Russia,Europe,Europe,High income,Developing
+SAU,Saudi Arabia,Middle East,Asia,High income,Developing
+KOR,South Korea,East Asia,Asia,High income,Developed
+ESP,Spain,Europe,Europe,High income,Developed
+SWE,Sweden,Europe,Europe,High income,Developed
+CHE,Switzerland,Europe,Europe,High income,Developed
+TWN,Taiwan,East Asia,Asia,High income,Developing
+THA,Thailand,Southeast Asia,Asia,Upper-middle income,Developing
+TUR,Turkey,Middle East,Asia,Upper-middle income,Developing
+GBR,United Kingdom,Europe,Europe,High income,Developed
+USA,United States,North America,North America,High income,Developed

@@ -1,0 +1,68 @@
+table FactEnergy
+	lineageTag: a0d419dc-8e9f-4121-9c40-719239e7a069
+
+	column IsoCode
+		dataType: string
+		lineageTag: 3772fd28-4d2c-47d5-ae3f-5d86622a9d9b
+		summarizeBy: none
+		sourceColumn: IsoCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c5ed8f3-44c2-448a-b373-4b3c44f72f1b
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: a53fa2de-5a2d-4917-8a9f-b2ebcc998b8d
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Consumption
+		dataType: int64
+		formatString: 0
+		lineageTag: 74643a25-50c0-4425-b4cc-289d08486871
+		summarizeBy: sum
+		sourceColumn: Consumption
+
+		annotation SummarizationSetBy = Automatic
+
+	column Electricity
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f3865f3-7b2b-47c5-8159-8f2de4bd9b39
+		summarizeBy: sum
+		sourceColumn: Electricity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Production
+		dataType: double
+		lineageTag: 30fade94-0176-4f75-9844-db6a99bb5fae
+		summarizeBy: sum
+		sourceColumn: Production
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactEnergy = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Projects\EnergyDataAnalysis\DataWarehouse\FactEnergy.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"IsoCode", type text}, {"Year", Int64.Type}, {"Type", type text}, {"Consumption", Int64.Type}, {"Electricity", Int64.Type}, {"Production", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

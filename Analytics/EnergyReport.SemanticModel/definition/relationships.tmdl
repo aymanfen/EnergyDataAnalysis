@@ -1,0 +1,20 @@
+relationship AutoDetected_78752742-6ed9-47af-8f9b-4fb9c52afa39
+	fromColumn: FactCountry.Year
+	toColumn: DimYear.Year
+
+relationship AutoDetected_7d947c94-2e8a-4097-b72d-5c848bbc7da7
+	fromColumn: FactEnergy.Year
+	toColumn: DimYear.Year
+
+relationship AutoDetected_cc839b6e-8e0f-45f9-9766-715005cea951
+	fromColumn: FactCountry.IsoCode
+	toColumn: DimCountry.IsoCode
+
+relationship AutoDetected_afb4ebb9-f6a3-47bd-92c7-619c31b0391e
+	fromColumn: FactEnergy.IsoCode
+	toColumn: DimCountry.IsoCode
+
+relationship AutoDetected_c7378aca-4b3f-4b77-9418-439a80c38b50
+	fromColumn: FactEnergy.Type
+	toColumn: DimType.Type
+

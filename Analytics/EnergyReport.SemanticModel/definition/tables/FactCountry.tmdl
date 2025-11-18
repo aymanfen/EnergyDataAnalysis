@@ -1,0 +1,114 @@
+table FactCountry
+	lineageTag: 526df69e-6853-430d-8193-6d0a7ba83ef1
+
+	column IsoCode
+		dataType: string
+		lineageTag: 933cd9db-3703-405d-bee4-b35327db2b6d
+		summarizeBy: none
+		sourceColumn: IsoCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 816760a6-308f-4039-8c01-a3ecfbb5e194
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Population
+		dataType: int64
+		formatString: 0
+		lineageTag: ad611bf0-d0fb-4903-8be8-1f951f6d849a
+		summarizeBy: sum
+		sourceColumn: Population
+
+		annotation SummarizationSetBy = Automatic
+
+	column GDP
+		dataType: int64
+		formatString: 0
+		lineageTag: 535403b5-6dc7-49e3-a2de-5627afbe4249
+		summarizeBy: sum
+		sourceColumn: GDP
+
+		annotation SummarizationSetBy = Automatic
+
+	column ElectricityDemand
+		dataType: double
+		lineageTag: 4ac9990d-2677-4fc9-b4d4-fa35157778f7
+		summarizeBy: sum
+		sourceColumn: ElectricityDemand
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ElectricityProduction
+		dataType: double
+		lineageTag: bb0af7c7-8bf4-49b6-9349-59b9f685bdaf
+		summarizeBy: sum
+		sourceColumn: ElectricityProduction
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ElectricityImport
+		dataType: double
+		lineageTag: 77afe69b-6f74-47fa-a427-d0327963e263
+		summarizeBy: sum
+		sourceColumn: ElectricityImport
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EnergyConsumption
+		dataType: double
+		lineageTag: 9af57597-7631-46df-9178-1ccf2b0abf77
+		summarizeBy: sum
+		sourceColumn: EnergyConsumption
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EnergyperCapita = DIVIDE(FactCountry[EnergyConsumption]*1000000,FactCountry[Population],0)
+		lineageTag: 6098587d-6278-473f-b768-ab18477e253b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EnergyperGDP = DIVIDE(FactCountry[EnergyConsumption]*1000000000,FactCountry[GDP],0)
+		lineageTag: 632d73e8-c155-42e9-9772-dd5b8b9f9f15
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GDPperCapita = DIVIDE(FactCountry[GDP],FactCountry[Population]*1000,0)
+		lineageTag: b414892d-4d95-4ad3-88b5-e7b4acb8ca93
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactCountry = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Projects\EnergyDataAnalysis\DataWarehouse\FactCountry.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"IsoCode", type text}, {"Year", Int64.Type}, {"Population", Int64.Type}, {"GDP", Int64.Type}, {"ElectricityDemand", type number}, {"ElectricityProduction", type number}, {"ElectricityImport", type number}, {"EnergyConsumption", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
