@@ -3,7 +3,7 @@
 
 This project builds an end-to-end ETL pipeline to extract, clean, transform, and model global energy consumption and production data, enabling analytical insights on worldwide energy trends, renewable adoption, economic dependency, and geopolitical impacts.
 
-Objective
+### Objective
 
 Analyze global energy consumption patterns and renewable energy transitions over time to answer key questions such as:
 

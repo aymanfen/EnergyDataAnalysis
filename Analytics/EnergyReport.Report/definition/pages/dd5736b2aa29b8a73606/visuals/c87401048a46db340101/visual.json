@@ -33,7 +33,7 @@
               },
               "queryRef": "DimCountry.RegionHierarchy.Continent",
               "nativeQueryRef": "RegionHierarchy Continent",
-              "active": true
+              "active": false
             },
             {
               "field": {
